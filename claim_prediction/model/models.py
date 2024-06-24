@@ -16,7 +16,7 @@ class BaseModel(ABC):
     @abstractmethod 
     def fit_model(self):
         pass
-    
+
     @abstractmethod
     def save_model(self):
         pass
@@ -28,9 +28,10 @@ class XGB(BaseModel):
         pass
 
     def _build_model(self):
+        self.model_params = xgb_params
         self.model = xgb.XGBClassifier(early_stopping_rounds=15,
                           enable_categorical=True,
-                          **xgb_params)
+                          **self.model_params)
         
     def fit_model(self, X, y, eval_set):
         self._build_model()
@@ -43,7 +44,7 @@ class XGB(BaseModel):
     
     def load_model(self):
         pass
-    
-    def save_model(self):
-        pass
+
+    def save_model(self,path):
+        self.model.save_model(path)
 
