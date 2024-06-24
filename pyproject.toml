@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "claims-perdiction"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+numpy = "^2.0.0"
+scikit-learn = "^1.5.0"
+jupyter = "^1.0.0"
+scipy = "^1.13.1"
+matplotlib = "^3.9.0"
+seaborn = "^0.13.2"
+shap = "^0.45.1"
+xgboost = "^2.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
