@@ -1,8 +1,7 @@
 from config import non_numerical_columns, features, target
 from sklearn.model_selection import train_test_split
-from abc import ABC,  abstractmethod
 
-class Preprocessing():
+class BasePreprocessor():
 
     def __init__(self):
         pass
@@ -19,32 +18,45 @@ class Preprocessing():
         self._clean_data()
         self._convert_data_types()
         return self.data
-
-class Splitter(ABC):
-
-    @abstractmethod
-    def split_data(self):
-        pass
-
-class TrainingSplitter(Splitter):
-
-    def __init__(self,test_size):
-        self.test_size = test_size
-
-    def split_data(self, data):
-        X, y = data[features], data[target]
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=self.test_size, random_state=1889)
-        X_train, X_eval, y_train, y_eval = train_test_split(X, y, test_size=self.test_size, random_state=101)
-        eval_set = [(X_eval, y_eval)]
-        return X_train, X_test, y_train, y_test, eval_set
     
-class InferenceSplitter(Splitter):
+class TrainingPreprocesser(BasePreprocessor):
 
     def __init__(self):
-        pass
+        super().__init__()
 
-    def split_data(self,data):
-        return data[features]
+    def _select_features(self):
+        self.X, self.y = self.data[features], self.data[target]
+
+    def _split_data(self):
+        # split into train and test
+        X_train, self.X_test, y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=1889)
+        # split train into train and validation sets
+        self.X_train, X_eval, self.y_train, y_eval = train_test_split(X_train, y_train, test_size=0.2, random_state=101)
+        self.eval_set = [(X_eval, y_eval)]
+    
+    def preprocess_data(self, data):
+        self.data = data
+        self._clean_data()
+        self._convert_data_types()
+        self._select_features()
+        self._split_data()
+        return self.X_train, self.X_test, self.y_train, self.y_test, self.eval_set
+    
+class InferencePreprocesser(BasePreprocessor):
+
+    def __init__(self):
+        super().__init__()
+
+    def _select_features(self):
+        self.X = self.data[features]
+
+    def preprocess_data(self, data):
+        self.data = data
+        self._clean_data()
+        self._convert_data_types()
+        self._select_features()
+        return self.X_
+
         
 
         

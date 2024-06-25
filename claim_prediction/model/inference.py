@@ -11,8 +11,7 @@ class Inference():
 
     def _load_and_preprocess_data(self):
         inference_data = self.data_loader.load_data()
-        processed_data = self.preprocessor.preprocess_data(inference_data)
-        self.X = self.splitter.split_data(processed_data)
+        self.X = self.preprocessor.preprocess_data(inference_data)
 
     def _make_predictions(self):
         self.model.load_model()
