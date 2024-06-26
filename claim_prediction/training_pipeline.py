@@ -9,10 +9,12 @@ import numpy as np
 
 np.random.seed(1889)
 
-if __name__ == '__main__':
-    training_pipeline = DatabricksTrainer(TrainingDataLoader(),
-                  TrainingPreprocesser(),
-                  RandomSearchTuner(eval_metrics),
-                  XGB(),
-                  Evaluation())
+if __name__ == "__main__":
+    training_pipeline = Trainer(
+        TrainingDataLoader(),
+        TrainingPreprocesser(),
+        RandomSearchTuner(eval_metrics),
+        XGB(),
+        Evaluation(),
+    )
     training_pipeline.run_training()

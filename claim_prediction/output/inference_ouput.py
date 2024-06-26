@@ -1,5 +1,4 @@
-
-class WriteToCatalog():
+class WriteToCatalog:
 
     def __init__(self, catalog):
         self.catalog = catalog

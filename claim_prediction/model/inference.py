@@ -1,6 +1,4 @@
-
-
-class Inference():
+class Inference:
 
     def __init__(self, data_loader, preprocessor, splitter, model, writer):
         self.data_loader = data_loader
@@ -21,4 +19,3 @@ class Inference():
     def run_inference(self):
         self._load_and_preprocess_data()
         self._make_predictions(self)
-
