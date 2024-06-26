@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=bundle_config_schema.json
+bundle:
+  name: claims-prediction
+
+resources:
+  jobs:
+    training-pipeline-job:
+      name: training-pipeline
+      job_clusters:
+        - job_cluster_key: common-cluster
+          new_cluster:
+            spark_version: 12.2.x-scala2.12
+            node_type_id: Standard_DS3_v2
+            num_workers: 1
+      tasks:
+        - task_key: run-training-pipeline
+          job_cluster_key: common-cluster
+          spark_python_task:
+            python_file: claim_prediction/training_pipeline.py
+
+targets:
+  development:
+    workspace:
+      host: 'https://adb-2405334241422072.12.azuredatabricks.net'
