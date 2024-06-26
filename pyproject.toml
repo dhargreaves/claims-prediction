@@ -13,10 +13,11 @@ jupyter = "^1.0.0"
 scipy = "^1.13.1"
 shap = "^0.45.1"
 xgboost = "^2.1.0"
-numpy = "^2.0.0"
 black = "^24.4.2"
 pytest = "^8.2.2"
 pylint = "^3.2.4"
+numpy = "1.26.4"
+mlflow = "^2.14.1"
 
 
 [build-system]

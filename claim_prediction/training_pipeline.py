@@ -10,7 +10,7 @@ import numpy as np
 np.random.seed(1889)
 
 if __name__ == "__main__":
-    training_pipeline = Trainer(
+    training_pipeline = DatabricksTrainer(
         TrainingDataLoader(),
         TrainingPreprocesser(),
         RandomSearchTuner(eval_metrics),

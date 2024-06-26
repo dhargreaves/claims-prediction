@@ -1,3 +1,5 @@
+import mlflow
+
 class Trainer:
 
     def __init__(self, data_loader, preprocessor, parameter_tuner, model, evaluator):
@@ -70,8 +72,6 @@ class DatabricksTrainer(Trainer):
                 mlflow.log_metric(key, value)
 
     def run_training(self):
-        import mlflow
-
         mlflow.autolog(disable=True)
         self._load_and_process_data()
         self._train_and_evaluate_model()
