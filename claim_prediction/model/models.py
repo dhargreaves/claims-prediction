@@ -6,7 +6,7 @@ class BaseModel(ABC):
 
     @abstractmethod
     def __init__(self):
-        self._build_model()
+        pass
 
     @abstractmethod
     def build_and_fit_model(self):
@@ -34,6 +34,7 @@ class XGB(BaseModel):
         return pred, pred_proba
 
     def load_model(self):
+        """load model from model registry"""
         pass
 
     def save_model(self, path):

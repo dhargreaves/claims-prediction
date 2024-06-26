@@ -1,9 +1,8 @@
 class Inference:
 
-    def __init__(self, data_loader, preprocessor, splitter, model, writer):
+    def __init__(self, data_loader, preprocessor, model, writer):
         self.data_loader = data_loader
         self.preprocessor = preprocessor
-        self.splitter = splitter
         self.model = model
         self.writer = writer
 
@@ -18,4 +17,4 @@ class Inference:
 
     def run_inference(self):
         self._load_and_preprocess_data()
-        self._make_predictions(self)
+        self._make_predictions()

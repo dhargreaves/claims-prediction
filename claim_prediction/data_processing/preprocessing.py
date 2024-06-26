@@ -62,4 +62,4 @@ class InferencePreprocesser(BasePreprocessor):
         self._clean_data()
         self._convert_data_types()
         self._select_features()
-        return self.X_
+        return self.X
