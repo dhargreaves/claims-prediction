@@ -15,25 +15,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: "Setup Python, Poetry and Dependencies"
+        uses: packetcoders/action-setup-cache-python-poetry@main
         with:
-          python-version: '3.12'
-
-      - name: Install Poetry
-        run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-          source $HOME/.poetry/env
-          poetry config virtualenvs.create false
+          python-version: 3.12
+          poetry-version: 1.2.2
 
       - name: Install dependencies
         run: poetry install --no-interaction --no-ansi
 
       - name: Format code with Black
-        run: black .
+        run: poetry run black
 
       - name: Run pytest
-        run: pytest
+        run: poetry run pytest
 
       - name: Check for linting errors
         run: |
