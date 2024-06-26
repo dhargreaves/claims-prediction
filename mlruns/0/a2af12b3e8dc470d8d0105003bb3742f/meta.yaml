@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/dan/Documents/Projects/claims-prediction/mlruns/0/a2af12b3e8dc470d8d0105003bb3742f/artifacts
+end_time: 1719417213960
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a2af12b3e8dc470d8d0105003bb3742f
+run_name: claim_prediction
+run_uuid: a2af12b3e8dc470d8d0105003bb3742f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1719417154078
+status: 4
+tags: []
+user_id: dan

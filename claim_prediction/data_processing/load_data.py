@@ -143,6 +143,7 @@ class TrainingDataLoader(DataLoader):
         df["employment_type"] = np.random.choice(
             [1, None, 0], size=(n_rows), p=[0.16, 0.7, 0.14]
         )
+        print(df.dtypes)
         return df
 
     def load_data(self):
