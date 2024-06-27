@@ -1,4 +1,4 @@
-# Claims Predictions
+# Claims Prediction
 
 #### What are the assumptions you have made for this service and why?
 The assumptions are that the both the existing training data and the new data provided monthly will be available in the same table and can be pulled together for model retraining. That the data used for inference (new applications) is provided by the end of the working day each day and predictions need to be made for this data each day. The inference pipeline could be easily modified to run at the end of a 14 day cycle if required. The assumption is that batch inference with output written to a table would be sufficient given the needs of the business and the data size.
