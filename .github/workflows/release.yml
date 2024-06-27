@@ -1,11 +1,11 @@
-name: "Staging deployment"
+name: "Staging deployment & test"
 
 concurrency: 1
 
-on:
-  push:
-    branches:
-      - release
+#on:
+#  push:
+#   branches:
+#     - release
 
 jobs:
   deploy:
@@ -22,8 +22,8 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.SP_TOKEN }}
           DATABRICKS_BUNDLE_ENV: staging
 
-  pipeline_update:
-    name: "Run pipeline update"
+  run_pipeline:
+    name: "Run pipeline"
     runs-on: ubuntu-latest
     needs:
       - deploy
