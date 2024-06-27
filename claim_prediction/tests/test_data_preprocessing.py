@@ -1,6 +1,10 @@
 from ..data_processing.load_data import TrainingDataLoader
 
 def test_training_data_loader():
+    """
+    unit test to ensure training data loaded from includes the required
+    columns and those columns are of the expected data type.
+    """
     training_data_loader = TrainingDataLoader()
     training_data = training_data_loader.load_data()
     expected_dtypes = {
@@ -50,4 +54,19 @@ def test_training_data_loader():
     assert set(training_data.columns) == set(expected_dtypes.keys())
     for column, dtype in expected_dtypes.items():
         assert training_data[column].dtype == dtype
+
+def test_training_preprocessor():
+    """
+    Unit test for training preprocessor to ensure preprocess method works
+    as expected against a sample or mock data.
+    """
+    pass
+
+def test_inference_preprocessor():
+    """
+    Unit test for inference preprocessor to ensure preprocess method works
+    as expected against a sample or mock data.
+    """
+    pass
+
 

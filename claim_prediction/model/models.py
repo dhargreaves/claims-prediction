@@ -39,3 +39,15 @@ class XGB(BaseModel):
 
     def save_model(self, path):
         self.model.save_model(path)
+
+class ChampionChallenger():
+    """
+    Class to with method to test wether a newly trained model 
+    is better than an existing model. To be run when model is retrained
+    and should incorporate statistical tests (i.e t-test) to confirm
+    new model is an improvement before it is registered.
+    """
+
+    def __init__(self, champion_model, challenger_model, test_data):
+        pass
+        
