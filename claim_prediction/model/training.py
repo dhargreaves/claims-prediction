@@ -1,4 +1,5 @@
 import mlflow
+import datetime
 
 class Trainer:
 
@@ -65,9 +66,11 @@ class DatabricksTrainer(Trainer):
         )
 
     def _train_and_evaluate_model(self):
+        mlflow.set_tracking_uri("databricks")
+        mlflow.set_experiment(f"/Workspace/Shared/claims_prediction_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}")
         with mlflow.start_run(run_name="claim_prediction"):
             super()._train_and_evaluate_model()
-            mlflow.log_params(self.model.model_params)
+            mlflow.log_params(self.model.model.get_params())
             for key, value in self.evaluator.evaluation_metrics.items():
                 mlflow.log_metric(key, value)
 
