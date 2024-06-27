@@ -50,9 +50,46 @@ class Trainer:
 
 
 class DatabricksTrainer(Trainer):
+    """
+    A class for training machine learning models using Databricks with MLflow integration.
 
-    def __init__(self, data_loader, preprocessor, splitter, model, evaluator):
-        super().__init__(data_loader, preprocessor, splitter, model, evaluator)
+    Inherits from Trainer and provides additional functionality for logging models and metrics using MLflow on Databricks.
+
+    Attributes
+    ----------
+    data_loader : DataLoader
+        The data loader object responsible for loading data.
+    preprocessor : Preprocessor
+        The preprocessor object used for preprocessing data.
+    parameter_tuner : ParameterTuner
+        The parameter tuner object for tuning model hyperparameters.
+    model : Model
+        The machine learning model object.
+    evaluator : Evaluator
+        The evaluator object for evaluating model performance.
+
+    Methods
+    -------
+    __init__(data_loader, preprocessor, parameter_tuner, model, evaluator):
+        Initializes a DatabricksTrainer instance with provided data loader, preprocessor,
+        parameter tuner, model, and evaluator.
+
+    _log_model():
+        Logs the trained model using MLflow.Uses MLflow to log the trained XGBoost model with inferred signature, default Conda environment, and registers it with a specific model name.
+
+    _train_and_evaluate_model():
+        Trains the model, evaluates its performance, and logs metrics and parameters using MLflow.
+        Sets the MLflow tracking URI to Databricks, starts a new experiment run with a timestamped name, trains the model, logs its parameters, and logs evaluation metrics.
+
+    run_training():
+        Runs the entire training pipeline using DatabricksTrainer.
+        Disables automatic logging with MLflow, loads and processes data,
+        trains and evaluates the model, and logs the trained model.
+    """
+
+
+    def __init__(self, data_loader, preprocessor, parameter_tuner, model, evaluator):
+        super().__init__(data_loader, preprocessor, parameter_tuner, model, evaluator)
 
     def _log_model(self):
         signature = mlflow.models.infer_signature(self.X_train, self.train_pred)
