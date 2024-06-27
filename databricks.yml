@@ -53,7 +53,7 @@ targets:
             - task_key: run-integration-test
               job_cluster_key: common-cluster
               spark_python_task:
-                python_file: claim_prediction/tests/integration_test.py
+                python_file: claim_prediction/tests/integration_tests.py
 
 
   production:
